@@ -1,0 +1,1280 @@
+/* ===================================   CSS CUSTOM PROPERTIES (VARIABLES)   =================================== */
+:root {
+  /* Primary Color Palette */
+  --primary-green: #16a34a;
+  --secondary-green: #22c55e;
+  --light-green: #86efac;
+  --dark-green: #15803d;
+  --forest-green: #166534;
+  --mint-green: #a7f3d0;
+  --sage-green: #84cc16;
+  --emerald-green: #10b981;
+
+  /* Neutral Colors */
+  --white: #ffffff;
+  --off-white: #fefefe;
+  --cream: #f9fafb;
+  --light-gray: #f3f4f6;
+  --medium-gray: #6b7280;
+  --dark-gray: #374151;
+  --charcoal: #1f2937;
+  --black: #111827;
+
+  /* Shadow Variations */
+  --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  --shadow-green: 0 10px 25px -5px rgba(22, 163, 74, 0.25);
+  --shadow-green-lg: 0 20px 40px -10px rgba(22, 163, 74, 0.3);
+
+  /* Transition Speeds */
+  --transition-fast: 0.15s ease;
+  --transition-normal: 0.3s ease;
+  --transition-slow: 0.5s ease;
+  --transition-slower: 0.8s ease;
+
+  /* Border Radius */
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
+  --radius-full: 9999px;
+
+  /* Z-Index Layers */
+  --z-background: -1;
+  --z-content: 1;
+  --z-overlay: 10;
+  --z-modal: 100;
+
+  /* Responsive Spacing Variables */
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 1.5rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 3rem;
+  --spacing-2xl: 4rem;
+  --spacing-3xl: 6rem;
+
+  /* Container Max Widths */
+  --container-sm: 640px;
+  --container-md: 768px;
+  --container-lg: 1024px;
+  --container-xl: 1280px;
+}
+
+/* ===================================   RESET AND BASE STYLES   =================================== */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  height: 100%; /* Added for single-page design */
+  overflow: hidden; /* Added for single-page design */
+}
+
+body {
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  line-height: 1.6;
+  color: var(--charcoal);
+  background-color: var(--white);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  height: 100%; /* Added for single-page design */
+  overflow: hidden; /* Added for single-page design */
+}
+
+/* ===================================   PAGE WRAPPER   =================================== */
+.page-wrapper {
+  height: 100vh; /* Changed from min-height to height */
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: var(--spacing-lg) var(--spacing-md);
+}
+
+/* ===================================   BACKGROUND LAYER   =================================== */
+.background-layer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: var(--z-background);
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* Gradient Background */
+.gradient-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    #f0fdf4 0%,
+    #ecfdf5 15%,
+    #d1fae5 30%,
+    #bbf7d0 45%,
+    #a7f3d0 60%,
+    #86efac 75%,
+    #6ee7b7 90%,
+    #5eead4 100%
+  );
+  animation: gradientShift 20s ease-in-out infinite;
+}
+
+@keyframes gradientShift {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* ===================================   NATURE SCENE ANIMATIONS   =================================== */
+.nature-scene {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+/* Tree Container */
+.tree-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  bottom: 0;
+}
+
+/* Individual Trees */
+.tree {
+  position: absolute;
+  bottom: 0;
+  opacity: 0.7;
+  animation: treeGrowth 4s ease-out forwards;
+}
+
+.tree-left {
+  left: 5%;
+  animation-delay: 1s;
+}
+
+.tree-center {
+  left: 50%;
+  transform: translateX(-50%);
+  animation-delay: 1.5s;
+}
+
+.tree-right {
+  right: 8%;
+  animation-delay: 2s;
+}
+
+@keyframes treeGrowth {
+  0% {
+    transform: scaleY(0) translateX(var(--translate-x, 0));
+    transform-origin: bottom center;
+    opacity: 0;
+  }
+  60% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: scaleY(1) translateX(var(--translate-x, 0));
+    opacity: 0.7;
+  }
+}
+
+/* Tree Trunks */
+.tree-trunk {
+  width: 12px;
+  height: 100px;
+  background: linear-gradient(to top, #8b4513 0%, #a0522d 30%, #cd853f 70%, #daa520 100%);
+  margin: 0 auto;
+  border-radius: 6px;
+  position: relative;
+  animation: trunkGrow 2.5s ease-out;
+  box-shadow: inset 2px 0 4px rgba(0, 0, 0, 0.2);
+}
+
+@keyframes trunkGrow {
+  from {
+    height: 0;
+  }
+  to {
+    height: 100px;
+  }
+}
+
+/* Tree Canopy */
+.tree-canopy {
+  position: relative;
+  margin-top: -15px;
+}
+
+.canopy-layer {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, var(--light-green), var(--primary-green), var(--dark-green));
+  animation: canopyBloom 2s ease-out;
+  box-shadow: 0 4px 12px rgba(22, 163, 74, 0.3);
+}
+
+/* Canopy Layer Variations */
+.layer-1 {
+  width: 50px;
+  height: 50px;
+  top: -25px;
+  left: 50%;
+  transform: translateX(-50%);
+  animation-delay: 3s;
+}
+
+.layer-2 {
+  width: 40px;
+  height: 40px;
+  top: -35px;
+  left: 25%;
+  animation-delay: 3.3s;
+}
+
+.layer-3 {
+  width: 35px;
+  height: 35px;
+  top: -30px;
+  right: 20%;
+  animation-delay: 3.6s;
+}
+
+.layer-4 {
+  width: 30px;
+  height: 30px;
+  top: -45px;
+  left: 45%;
+  animation-delay: 3.9s;
+}
+
+@keyframes canopyBloom {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Floating Leaves */
+.floating-leaves {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.leaf {
+  position: absolute;
+  font-size: 1.5rem;
+  opacity: 0.6;
+  animation: leafFloat 12s ease-in-out infinite;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+/* Leaf Positions */
+.leaf-1 {
+  top: 15%;
+  left: 20%;
+  animation-delay: 0s;
+}
+
+.leaf-2 {
+  top: 35%;
+  right: 25%;
+  animation-delay: 1.5s;
+}
+
+.leaf-3 {
+  top: 55%;
+  left: 10%;
+  animation-delay: 3s;
+}
+
+.leaf-4 {
+  top: 75%;
+  right: 15%;
+  animation-delay: 4.5s;
+}
+
+.leaf-5 {
+  top: 25%;
+  left: 70%;
+  animation-delay: 6s;
+}
+
+.leaf-6 {
+  top: 65%;
+  right: 60%;
+  animation-delay: 7.5s;
+}
+
+.leaf-7 {
+  top: 45%;
+  left: 85%;
+  animation-delay: 9s;
+}
+
+.leaf-8 {
+  top: 85%;
+  left: 40%;
+  animation-delay: 10.5s;
+}
+
+@keyframes leafFloat {
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-15px) rotate(5deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(-3deg);
+  }
+  75% {
+    transform: translateY(-20px) rotate(8deg);
+  }
+}
+
+/* Light Effects */
+.light-effects {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.light-orb {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(134, 239, 172, 0.4) 0%, rgba(134, 239, 172, 0.2) 40%, transparent 70%);
+  animation: orbFloat 8s ease-in-out infinite;
+  filter: blur(1px);
+}
+
+.orb-1 {
+  width: 120px;
+  height: 120px;
+  top: 20%;
+  left: 30%;
+  animation-delay: 0s;
+}
+
+.orb-2 {
+  width: 80px;
+  height: 80px;
+  top: 60%;
+  right: 20%;
+  animation-delay: 2.7s;
+}
+
+.orb-3 {
+  width: 100px;
+  height: 100px;
+  bottom: 30%;
+  left: 60%;
+  animation-delay: 5.4s;
+}
+
+@keyframes orbFloat {
+  0%,
+  100% {
+    transform: translateY(0px) scale(1);
+    opacity: 0.4;
+  }
+  50% {
+    transform: translateY(-30px) scale(1.1);
+    opacity: 0.7;
+  }
+}
+
+/* ===================================   MAIN CONTAINER   =================================== */
+.main-container {
+  text-align: center;
+  max-width: 900px;
+  width: 100%;
+  z-index: var(--z-content);
+  animation: containerReveal 1.5s ease-out 0.5s both;
+  padding: 0 var(--spacing-sm);
+}
+
+@keyframes containerReveal {
+  from {
+    opacity: 0;
+    transform: translateY(40px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ===================================   LOGO SECTION   =================================== */
+.logo-section {
+  margin-bottom: var(--spacing-3xl);
+  animation: logoEntrance 2s ease-out 1s both;
+}
+
+@keyframes logoEntrance {
+  from {
+    opacity: 0;
+    transform: scale(0.7) translateY(-30px) rotate(-5deg);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0) rotate(0deg);
+  }
+}
+
+.logo-frame {
+  position: relative;
+  display: inline-block;
+}
+
+.logo-backdrop {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 200px;
+  height: 200px;
+  background: var(--white);
+  border-radius: 50%;
+  box-shadow: var(--shadow-2xl);
+  opacity: 0.98;
+  backdrop-filter: blur(10px);
+}
+
+.logo-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 220px;
+  height: 220px;
+  background: radial-gradient(circle, rgba(22, 163, 74, 0.3) 0%, rgba(134, 239, 172, 0.2) 40%, transparent 70%);
+  border-radius: 50%;
+  filter: blur(20px);
+  animation: logoGlow 4s ease-in-out infinite alternate;
+}
+
+@keyframes logoGlow {
+  from {
+    opacity: 0.5;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  to {
+    opacity: 0.8;
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+}
+
+.main-logo {
+  width: 160px;
+  height: auto;
+  position: relative;
+  z-index: 2;
+  filter: drop-shadow(0 8px 20px rgba(22, 163, 74, 0.2));
+  transition: all var(--transition-normal);
+  animation: logoFloat 6s ease-in-out infinite;
+}
+
+@keyframes logoFloat {
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(1deg);
+  }
+}
+
+.main-logo:hover {
+  transform: scale(1.05) translateY(-5px);
+  filter: drop-shadow(0 12px 25px rgba(22, 163, 74, 0.3));
+}
+
+.logo-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 240px;
+  height: 240px;
+  border: 2px solid var(--primary-green);
+  border-radius: 50%;
+  opacity: 0.3;
+  animation: logoRing 8s linear infinite;
+}
+
+@keyframes logoRing {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg) scale(1);
+    opacity: 0.3;
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg) scale(1.1);
+    opacity: 0;
+  }
+}
+
+/* ===================================   HERO SECTION   =================================== */
+.hero-section {
+  margin-bottom: var(--spacing-xl);
+  animation: heroReveal 1.5s ease-out 1.3s both;
+}
+
+@keyframes heroReveal {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.hero-content {
+  position: relative;
+}
+
+.hero-title {
+  font-family: "Poppins", sans-serif;
+  font-size: 4.5rem;
+  font-weight: 800;
+  margin-bottom: var(--spacing-md);
+  letter-spacing: -0.02em;
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-md);
+  flex-wrap: wrap;
+}
+
+.title-word {
+  background: linear-gradient(
+    135deg,
+    var(--primary-green) 0%,
+    var(--secondary-green) 25%,
+    var(--emerald-green) 50%,
+    var(--sage-green) 75%,
+    var(--primary-green) 100%
+  );
+  background-size: 400% 400%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradientFlow 6s ease-in-out infinite, wordBounce 3s ease-in-out infinite;
+  text-shadow: 0 4px 15px rgba(22, 163, 74, 0.3);
+}
+
+.title-word:nth-child(2) {
+  animation-delay: 0.3s;
+}
+
+@keyframes gradientFlow {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes wordBounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.hero-underline {
+  width: 0;
+  height: 5px;
+  background: linear-gradient(90deg, var(--primary-green), var(--light-green), var(--primary-green));
+  margin: 0 auto;
+  border-radius: var(--radius-full);
+  animation: underlineGrow 2s ease-out 2s both;
+}
+
+@keyframes underlineGrow {
+  to {
+    width: 150px;
+  }
+}
+
+/* ===================================   WELCOME SECTION   =================================== */
+.welcome-section {
+  margin-bottom: var(--spacing-2xl);
+  animation: welcomeSlide 1.5s ease-out 1.8s both;
+}
+
+@keyframes welcomeSlide {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.welcome-content {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-sm);
+}
+
+.welcome-title {
+  font-family: "Poppins", sans-serif;
+  font-size: 2.75rem;
+  font-weight: 700;
+  color: var(--charcoal);
+  margin-bottom: var(--spacing-lg);
+  letter-spacing: -0.01em;
+  position: relative;
+}
+
+.welcome-title::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 3px;
+  background: var(--primary-green);
+  border-radius: var(--radius-full);
+  animation: titleUnderline 1.5s ease-out 2.5s both;
+}
+
+@keyframes titleUnderline {
+  to {
+    width: 120px;
+  }
+}
+
+.welcome-description {
+  font-size: 1.4rem;
+  color: var(--medium-gray);
+  font-weight: 500;
+  line-height: 1.8;
+  margin: 0 auto;
+}
+
+.highlight {
+  background: linear-gradient(135deg, var(--primary-green), var(--secondary-green));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 700;
+  position: relative;
+}
+
+/* ===================================   CONTACT SECTION   =================================== */
+.contact-section {
+  animation: contactReveal 1.5s ease-out 2.3s both;
+  padding: 0 var(--spacing-sm);
+}
+
+@keyframes contactReveal {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.contact-intro {
+  margin-bottom: var(--spacing-xl);
+}
+
+.contact-message {
+  font-size: 1.2rem;
+  color: var(--medium-gray);
+  font-weight: 600;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--spacing-lg);
+  max-width: 850px; /* Increased max-width to make the white boxes wider */
+  margin: 0 auto;
+  width: 100%;
+}
+
+.contact-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-lg) var(--spacing-xl);
+  text-decoration: none;
+  color: var(--charcoal);
+  border-radius: var(--radius-2xl);
+  transition: all var(--transition-normal);
+  overflow: visible;
+  transform: translateY(0);
+  animation: cardFloat 4s ease-in-out infinite;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.phone-card {
+  animation-delay: 0s;
+}
+
+.email-card {
+  animation-delay: 2s;
+}
+
+@keyframes cardFloat {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+.card-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--shadow-lg);
+  transition: all var(--transition-normal);
+}
+
+.contact-card:hover .card-background {
+  background: rgba(255, 255, 255, 0.98);
+  box-shadow: var(--shadow-green-lg);
+  border-color: var(--primary-green);
+  transform: translateY(-2px);
+}
+
+.card-shine {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  transition: left 0.6s ease;
+}
+
+.contact-card:hover .card-shine {
+  left: 100%;
+}
+
+.contact-icon-wrapper {
+  position: relative;
+  z-index: 2;
+  flex-shrink: 0;
+}
+
+.contact-icon {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, var(--primary-green), var(--secondary-green));
+  border-radius: var(--radius-xl);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--white);
+  box-shadow: var(--shadow-md);
+  transition: all var(--transition-normal);
+}
+
+.contact-card:hover .contact-icon {
+  transform: scale(1.1) rotate(5deg);
+  box-shadow: var(--shadow-green);
+}
+
+.contact-icon svg {
+  width: 28px;
+  height: 28px;
+}
+
+.contact-details {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+  position: relative;
+  z-index: 2;
+  flex: 1;
+  /* Removed min-width: 0; to allow content to dictate minimum size */
+}
+
+.contact-label {
+  font-size: 0.9rem;
+  color: var(--medium-gray);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.contact-value {
+  font-size: 1.2rem;
+  color: var(--charcoal);
+  font-weight: 700;
+  transition: color var(--transition-fast);
+  white-space: nowrap; /* Ensures text stays on a single line */
+  /* Removed overflow: hidden; and text-overflow: ellipsis; to display full text */
+}
+
+.contact-card:hover .contact-value {
+  color: var(--primary-green);
+}
+
+/* ===================================   FOOTER   =================================== */
+.page-footer {
+  position: absolute;
+  bottom: var(--spacing-lg);
+  color: var(--medium-gray);
+  font-size: 0.9rem;
+  font-weight: 500;
+  animation: footerFade 1s ease-out 3s both;
+  text-align: center;
+  padding: 0 var(--spacing-sm);
+}
+
+@keyframes footerFade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* ===================================   RESPONSIVE DESIGN   =================================== */
+
+/* Large Tablets and Small Desktops */
+@media (max-width: 1024px) {
+  :root {
+    --spacing-xl: 2.5rem;
+    --spacing-2xl: 3.5rem;
+    --spacing-3xl: 5rem;
+  }
+
+  .hero-title {
+    font-size: 4rem;
+  }
+
+  .welcome-title {
+    font-size: 2.5rem;
+  }
+
+  .welcome-description {
+    font-size: 1.3rem;
+  }
+
+  .contact-grid {
+    gap: var(--spacing-md);
+    max-width: 700px; /* Adjusted for this breakpoint */
+  }
+}
+
+/* Tablets */
+@media (max-width: 768px) {
+  :root {
+    --spacing-sm: 1rem;
+    --spacing-md: 1.25rem;
+    --spacing-lg: 1.75rem;
+    --spacing-xl: 2.25rem;
+    --spacing-2xl: 3rem;
+    --spacing-3xl: 4rem;
+  }
+
+  .page-wrapper {
+    padding: var(--spacing-md) var(--spacing-sm);
+  }
+
+  .main-container {
+    padding: 0;
+  }
+
+  .main-logo {
+    width: 140px;
+  }
+
+  .logo-backdrop {
+    width: 180px;
+    height: 180px;
+  }
+
+  .logo-glow {
+    width: 200px;
+    height: 200px;
+  }
+
+  .logo-ring {
+    width: 220px;
+    height: 220px;
+  }
+
+  .hero-title {
+    font-size: 3.5rem;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+  }
+
+  .welcome-title {
+    font-size: 2.2rem;
+  }
+
+  .welcome-description {
+    font-size: 1.2rem;
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-md);
+    max-width: 100%;
+  }
+
+  .contact-card {
+    padding: var(--spacing-md) var(--spacing-lg);
+    margin: 0;
+    max-width: 100%;
+  }
+
+  .contact-icon {
+    width: 55px;
+    height: 55px;
+  }
+
+  .contact-icon svg {
+    width: 26px;
+    height: 26px;
+  }
+
+  /* Hide trees on tablets for better performance */
+  .tree-container {
+    display: none;
+  }
+
+  .leaf {
+    font-size: 1.3rem;
+  }
+}
+
+/* Mobile Phones */
+@media (max-width: 480px) {
+  :root {
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 0.75rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+    --spacing-2xl: 2.5rem;
+    --spacing-3xl: 3rem;
+  }
+
+  .page-wrapper {
+    padding: var(--spacing-sm);
+    min-height: 100vh;
+  }
+
+  .main-container {
+    max-width: 100%;
+    padding: 0;
+  }
+
+  .logo-section {
+    margin-bottom: var(--spacing-2xl);
+  }
+
+  .main-logo {
+    width: 120px;
+  }
+
+  .logo-backdrop {
+    width: 160px;
+    height: 160px;
+  }
+
+  .logo-glow {
+    width: 180px;
+    height: 180px;
+  }
+
+  .logo-ring {
+    width: 200px;
+    height: 200px;
+  }
+
+  .hero-title {
+    font-size: 2.8rem;
+    line-height: 1.1;
+  }
+
+  .welcome-section {
+    margin-bottom: var(--spacing-xl);
+  }
+
+  .welcome-title {
+    font-size: 1.9rem;
+    margin-bottom: var(--spacing-md);
+  }
+
+  .welcome-description {
+    font-size: 1.1rem;
+    line-height: 1.6;
+  }
+
+  .contact-section {
+    padding: 0;
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-md);
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .contact-card {
+    padding: var(--spacing-lg) var(--spacing-md);
+    flex-direction: column;
+    text-align: center;
+    gap: var(--spacing-md);
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+  }
+
+  .contact-icon {
+    width: 50px;
+    height: 50px;
+  }
+
+  .contact-icon svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .contact-details {
+    align-items: center;
+    text-align: center;
+  }
+
+  .contact-value {
+    font-size: 1.1rem;
+    word-break: break-all;
+  }
+
+  .leaf {
+    font-size: 1.1rem;
+  }
+
+  .page-footer {
+    bottom: var(--spacing-sm);
+    font-size: 0.8rem;
+    position: relative;
+    margin-top: var(--spacing-xl);
+  }
+}
+
+/* Extra Small Devices */
+@media (max-width: 320px) {
+  .hero-title {
+    font-size: 2.4rem;
+  }
+
+  .welcome-title {
+    font-size: 1.7rem;
+  }
+
+  .contact-card {
+    padding: var(--spacing-md) var(--spacing-sm);
+  }
+
+  .contact-value {
+    font-size: 1rem;
+  }
+}
+
+/* Landscape Mobile Phones */
+@media (max-width: 768px) and (orientation: landscape) {
+  .page-wrapper {
+    padding: var(--spacing-sm);
+  }
+
+  .logo-section {
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .hero-section {
+    margin-bottom: var(--spacing-md);
+  }
+
+  .welcome-section {
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .hero-title {
+    font-size: 2.5rem;
+  }
+
+  .welcome-title {
+    font-size: 1.8rem;
+  }
+
+  .page-footer {
+    position: relative;
+    margin-top: var(--spacing-lg);
+  }
+}
+
+/* ===================================   ACCESSIBILITY IMPROVEMENTS   =================================== */
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+  :root {
+    --primary-green: #0d7a2d;
+    --secondary-green: #0f5f23;
+    --charcoal: #000000;
+    --white: #ffffff;
+    --medium-gray: #333333;
+  }
+}
+
+/* Focus Styles for Keyboard Navigation */
+.contact-card:focus {
+  outline: 3px solid var(--primary-green);
+  outline-offset: 2px;
+}
+
+.contact-card:focus-visible {
+  outline: 3px solid var(--primary-green);
+  outline-offset: 2px;
+}
+
+/* ===================================   PRINT STYLES   =================================== */
+@media print {
+  .background-layer,
+  .nature-scene,
+  .floating-leaves,
+  .light-effects {
+    display: none !important;
+  }
+
+  body {
+    background: white !important;
+    color: black !important;
+  }
+
+  .logo-backdrop {
+    box-shadow: none !important;
+    border: 2px solid #ccc;
+  }
+
+  .contact-card .card-background {
+    box-shadow: none !important;
+    border: 2px solid #ccc;
+  }
+
+  .hero-title,
+  .welcome-title,
+  .highlight {
+    color: black !important;
+    -webkit-text-fill-color: black !important;
+  }
+}
+
+/* ===================================   PERFORMANCE OPTIMIZATIONS   =================================== */
+
+/* GPU Acceleration for Animations */
+.main-logo,
+.contact-card,
+.leaf,
+.light-orb,
+.tree {
+  will-change: transform;
+}
+
+/* Optimize Background Rendering */
+.gradient-background {
+  will-change: background-position;
+}
+
+/* Reduce Animations on Low-End Devices */
+@media (max-width: 480px) and (max-height: 800px) {
+  .floating-leaves,
+  .light-effects {
+    display: none;
+  }
+}
+
+/* Container Queries Support (Future-proofing) */
+@supports (container-type: inline-size) {
+  .contact-grid {
+    container-type: inline-size;
+  }
+
+  @container (max-width: 600px) {
+    .contact-card {
+      flex-direction: column;
+      text-align: center;
+    }
+  }
+}
