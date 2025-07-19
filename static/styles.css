@@ -80,8 +80,8 @@ html {
   font-size: 16px;
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
-  height: 100%; /* Added for single-page design */
-  overflow: hidden; /* Added for single-page design */
+  height: 100%;
+  overflow-x: hidden;
 }
 
 body {
@@ -92,19 +92,19 @@ body {
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  height: 100%; /* Added for single-page design */
-  overflow: hidden; /* Added for single-page design */
+  min-height: 100vh;
 }
 
 /* ===================================   PAGE WRAPPER   =================================== */
 .page-wrapper {
-  height: 100vh; /* Changed from min-height to height */
+  min-height: 100vh;
   position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: var(--spacing-lg) var(--spacing-md);
+  overflow-x: hidden;
 }
 
 /* ===================================   BACKGROUND LAYER   =================================== */
@@ -735,9 +735,9 @@ body {
 
 .contact-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: var(--spacing-lg);
-  max-width: 850px; /* Increased max-width to make the white boxes wider */
+  max-width: 900px;
   margin: 0 auto;
   width: 100%;
 }
@@ -757,6 +757,7 @@ body {
   animation: cardFloat 4s ease-in-out infinite;
   width: 100%;
   box-sizing: border-box;
+  min-width: 0;
 }
 
 .phone-card {
@@ -848,7 +849,8 @@ body {
   position: relative;
   z-index: 2;
   flex: 1;
-  /* Removed min-width: 0; to allow content to dictate minimum size */
+  min-width: 0;
+  overflow: hidden;
 }
 
 .contact-label {
@@ -864,8 +866,8 @@ body {
   color: var(--charcoal);
   font-weight: 700;
   transition: color var(--transition-fast);
-  white-space: nowrap; /* Ensures text stays on a single line */
-  /* Removed overflow: hidden; and text-overflow: ellipsis; to display full text */
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 .contact-card:hover .contact-value {
@@ -917,7 +919,7 @@ body {
 
   .contact-grid {
     gap: var(--spacing-md);
-    max-width: 700px; /* Adjusted for this breakpoint */
+    max-width: 700px;
   }
 }
 
@@ -934,10 +936,12 @@ body {
 
   .page-wrapper {
     padding: var(--spacing-md) var(--spacing-sm);
+    min-height: 100vh;
   }
 
   .main-container {
     padding: 0;
+    max-width: 100%;
   }
 
   .main-logo {
@@ -1020,11 +1024,14 @@ body {
   .page-wrapper {
     padding: var(--spacing-sm);
     min-height: 100vh;
+    justify-content: flex-start;
+    padding-top: var(--spacing-lg);
   }
 
   .main-container {
     max-width: 100%;
     padding: 0;
+    width: 100%;
   }
 
   .logo-section {
@@ -1071,6 +1078,7 @@ body {
 
   .contact-section {
     padding: 0;
+    width: 100%;
   }
 
   .contact-grid {
@@ -1078,21 +1086,24 @@ body {
     gap: var(--spacing-md);
     width: 100%;
     max-width: 100%;
+    margin: 0;
   }
 
   .contact-card {
     padding: var(--spacing-lg) var(--spacing-md);
-    flex-direction: column;
-    text-align: center;
+    flex-direction: row;
+    text-align: left;
     gap: var(--spacing-md);
     width: 100%;
     max-width: 100%;
     margin: 0;
+    min-width: 0;
   }
 
   .contact-icon {
     width: 50px;
     height: 50px;
+    flex-shrink: 0;
   }
 
   .contact-icon svg {
@@ -1101,13 +1112,17 @@ body {
   }
 
   .contact-details {
-    align-items: center;
-    text-align: center;
+    align-items: flex-start;
+    text-align: left;
+    flex: 1;
+    min-width: 0;
   }
 
   .contact-value {
     font-size: 1.1rem;
-    word-break: break-all;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
   }
 
   .leaf {
@@ -1115,10 +1130,16 @@ body {
   }
 
   .page-footer {
-    bottom: var(--spacing-sm);
-    font-size: 0.8rem;
     position: relative;
     margin-top: var(--spacing-xl);
+    bottom: auto;
+    font-size: 0.8rem;
+  }
+
+  /* Hide complex animations on mobile for better performance */
+  .floating-leaves,
+  .light-effects {
+    display: none;
   }
 }
 
@@ -1139,12 +1160,18 @@ body {
   .contact-value {
     font-size: 1rem;
   }
+
+  .contact-grid {
+    gap: var(--spacing-sm);
+  }
 }
 
 /* Landscape Mobile Phones */
-@media (max-width: 768px) and (orientation: landscape) {
+@media (max-width: 768px) and (orientation: landscape) and (max-height: 500px) {
   .page-wrapper {
     padding: var(--spacing-sm);
+    justify-content: flex-start;
+    overflow-y: auto;
   }
 
   .logo-section {
@@ -1170,6 +1197,10 @@ body {
   .page-footer {
     position: relative;
     margin-top: var(--spacing-lg);
+  }
+
+  .main-container {
+    padding: var(--spacing-sm) 0;
   }
 }
 
